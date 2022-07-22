@@ -1,7 +1,15 @@
 require_relative "product.rb"
 
 class Book < Product
-  def initialize(params)
+  def initialize(params, info)
     super
+
+    @name = info[:name]
+    @genre = info[:genre]
+    @author = info[:author]
+  end
+
+  def to_s
+    "Книга «#{@name}», #{@genre}, автор — #{@author}, #{@price} руб. (осталось #{@amount})"
   end
 end
