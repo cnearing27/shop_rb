@@ -1,7 +1,6 @@
-require_relative "product.rb"
-
 class Film < Product
   attr_writer :price, :amount, :name, :year, :author
+  attr_accessor :price, :amount, :name, :author, :year
 
   def initialize(params, info)
     super

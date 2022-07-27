@@ -1,31 +1,65 @@
 require_relative "./lib/product.rb"
 require_relative "./lib/film.rb"
 require_relative "./lib/book.rb"
+require_relative "./lib/disk.rb"
+require_relative "./lib/product_collection.rb"
 
-films = []
-books = []
 
-films << Film.new({price: 990, amount: 5},
-  {name: "Леон", year: 1994, author: "Люк Бессон"})
+collection = ProductCollection.from_dir(__dir__)
+collection.sort!(key: :price, order: "asc")
 
-films << Film.new({price: 390, amount: 1},
-  {name: "Дурак", year: 2014, author: "Юрий Быков"})
+arr_collection = collection.to_a
 
-books << Book.new({price: 1500, amount: 10},
-  {name: "Идиот", genre: "роман", author: "Федор Достоевский"})
+shopping_list = []
+user_input = nil
+sum = 0
 
-films << Film.from_file("./data/films/0001.txt")
-books << Book.from_file("./data/books/0001.txt")
+loop do
+  puts
+  puts "Что хотите купить?"
 
-films[1].year = 1000
+  arr_collection.each.with_index(1) do |product, index|
+    puts "#{index}. #{product}"
+  end
 
-puts "Вот какие товары у нас есть:"
-puts
+  puts
+  puts "0. Выход"
+  puts
 
-films.each do |film|
-  puts film
+  user_input = -1
+
+  until (0..arr_collection.size).include?(user_input)
+    print "> "
+    user_input = gets.to_i
+  end
+
+  break if user_input == 0
+
+  if arr_collection[user_input - 1].amount > 0
+    puts
+    puts "Вы выбрали: #{arr_collection[user_input - 1]}"
+
+    arr_collection[user_input - 1].amount -= 1
+    sum += arr_collection[user_input - 1].price
+
+    puts
+    puts "Всего товаров на сумму: #{sum} руб."
+
+    shopping_list << arr_collection[user_input - 1]
+  else
+    puts
+    puts "Данный товар закончился :("
+  end
 end
 
-books.each do |book|
-  puts book
+puts
+
+if sum == 0
+  puts "Вы ничего не купили :( Возвращайтесь в другой раз!"
+else
+  puts "Вы купили:"
+  puts
+  puts shopping_list.to_a
+  puts
+  puts "С Вас — #{sum} руб. Спасибо за покупки!"
 end

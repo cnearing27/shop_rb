@@ -1,7 +1,6 @@
-require_relative "product.rb"
-
 class Book < Product
   attr_writer :price, :amount, :name, :genre, :author
+  attr_accessor :price, :amount, :name, :author, :genre
 
   def initialize(params, info)
     super
