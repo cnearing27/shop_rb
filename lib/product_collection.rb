@@ -25,6 +25,17 @@ class ProductCollection
     @products
   end
 
+  def to_s
+    output = ""
+
+    @products.each.with_index(1) do |product, index|
+      output += "#{index}. #{product.to_s}\n"
+    end
+    output += "\n0. Выход\n\n"
+
+    output
+  end
+
   def sort!(params)
     case params[:key]
       when :price
