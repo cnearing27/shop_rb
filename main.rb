@@ -5,12 +5,10 @@ require_relative "./lib/disk.rb"
 require_relative "./lib/shopping_cart.rb"
 require_relative "./lib/product_collection.rb"
 
-
 collection = ProductCollection.from_dir(__dir__)
 collection.sort!(key: :price, order: "asc")
 
 arr_collection = collection.to_a
-user_input = nil
 shopping_list = ShoppingCart.new
 
 loop do

@@ -1,4 +1,5 @@
 class ShoppingCart
+  attr_reader :sum
   def initialize
     @list = []
     @sum = 0
@@ -10,10 +11,6 @@ class ShoppingCart
   end
 
   def to_a
-    @list.uniq!
-  end
-
-  def sum
-    @sum
+    @list.uniq
   end
 end

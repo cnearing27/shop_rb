@@ -1,3 +1,5 @@
+CATEGORIES = ["books", "films", "disks"]
+
 class ProductCollection
   def initialize(products = [])
     @products = products
@@ -6,16 +8,17 @@ class ProductCollection
   def self.from_dir(current_path)
     products = []
 
-    Dir["#{current_path}/data/books/*.txt"].each do |file_path|
-      products << Book.from_file(file_path)
-    end
-
-    Dir["#{current_path}/data/films/*.txt"].each do |file_path|
-      products << Film.from_file(file_path)
-    end
-
-    Dir["#{current_path}/data/disks/*.txt"].each do |file_path|
-      products << Disk.from_file(file_path)
+    CATEGORIES.each do |category|
+      Dir["#{current_path}/data/#{category}/*.txt"].each do |file_path|
+        case category
+          when "books"
+            products << Book.from_file(file_path)
+          when "films"
+            products << Film.from_file(file_path)
+          when "disks"
+            products << Disk.from_file(file_path)
+          end
+      end
     end
 
     self.new(products)
