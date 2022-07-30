@@ -1,7 +1,3 @@
-require_relative "./lib/product.rb"
-require_relative "./lib/film.rb"
-require_relative "./lib/book.rb"
-require_relative "./lib/disk.rb"
 require_relative "./lib/shopping_cart.rb"
 require_relative "./lib/product_collection.rb"
 
@@ -15,7 +11,7 @@ loop do
   puts
   puts "Что хотите купить?"
 
-  puts collection.to_s
+  puts collection
 
   user_input = -1
 
@@ -53,7 +49,7 @@ if shopping_list.sum == 0
 else
   puts "Вы купили:"
   puts
-  puts shopping_list.to_a
+  puts shopping_list.to_s
   puts
   puts "С Вас — #{shopping_list.sum} руб. Спасибо за покупки!"
 end

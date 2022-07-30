@@ -10,8 +10,8 @@ class Film < Product
     @author = info[:author]
   end
 
-  def to_s
-    "Фильм «#{@name}», #{@year}, реж. #{@author}, #{@price} руб. (осталось #{@amount})"
+  def info
+    "Фильм «#{@name}», #{@year}, реж. #{@author}"
   end
 
   def self.from_file(file_path)

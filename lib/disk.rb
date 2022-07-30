@@ -11,8 +11,8 @@ class Disk < Product
     @genre = info[:genre]
   end
 
-  def to_s
-    "Альбом «#{@name}», #{genre}, #{@year}, исполнитель: #{@author}, #{@price} руб. (осталось #{@amount})"
+  def info
+    "Альбом «#{@name}», #{genre}, #{@year}, исполнитель: #{@author}"
   end
 
   def self.from_file(file_path)

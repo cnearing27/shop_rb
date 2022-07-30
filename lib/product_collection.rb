@@ -1,4 +1,9 @@
-CATEGORIES = ["books", "films", "disks"]
+require_relative "product.rb"
+require_relative "film.rb"
+require_relative "book.rb"
+require_relative "disk.rb"
+
+CATEGORIES = { books: Book, films: Film, disks: Disk }
 
 class ProductCollection
   def initialize(products = [])
@@ -8,16 +13,9 @@ class ProductCollection
   def self.from_dir(current_path)
     products = []
 
-    CATEGORIES.each do |category|
+    CATEGORIES.each do |category, product|
       Dir["#{current_path}/data/#{category}/*.txt"].each do |file_path|
-        case category
-          when "books"
-            products << Book.from_file(file_path)
-          when "films"
-            products << Film.from_file(file_path)
-          when "disks"
-            products << Disk.from_file(file_path)
-          end
+        products << product.from_file(file_path)
       end
     end
 
@@ -32,7 +30,7 @@ class ProductCollection
     output = ""
 
     @products.each.with_index(1) do |product, index|
-      output += "#{index}. #{product.to_s}\n"
+      output += "#{index}. #{product.to_s}, \n"
     end
     output += "\n0. Выход\n\n"
 

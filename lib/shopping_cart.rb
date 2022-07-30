@@ -1,5 +1,6 @@
 class ShoppingCart
   attr_reader :sum
+
   def initialize
     @list = []
     @sum = 0
@@ -10,7 +11,9 @@ class ShoppingCart
     @sum += product.price
   end
 
-  def to_a
-    @list.uniq
+  def to_s
+    @list.tally.map do |product, amount|
+      "#{product.info} x #{amount} шт. = #{product.price * amount} руб."
+    end
   end
 end
