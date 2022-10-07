@@ -1,7 +1,7 @@
-require_relative "product.rb"
-require_relative "film.rb"
-require_relative "book.rb"
-require_relative "disk.rb"
+require_relative "product"
+require_relative "film"
+require_relative "book"
+require_relative "disk"
 
 CATEGORIES = { books: Book, films: Film, disks: Disk }
 
@@ -19,7 +19,7 @@ class ProductCollection
       end
     end
 
-    self.new(products)
+    new(products)
   end
 
   def to_a

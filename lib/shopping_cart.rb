@@ -12,8 +12,8 @@ class ShoppingCart
   end
 
   def to_s
-    @list.tally.map do |product, amount|
+    @list.tally.map { |product, amount|
       "#{product.info} x #{amount} шт. = #{product.price * amount} руб."
-    end
+    }.join("\n")
   end
 end

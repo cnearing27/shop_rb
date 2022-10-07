@@ -1,5 +1,5 @@
-require_relative "./lib/shopping_cart.rb"
-require_relative "./lib/product_collection.rb"
+require_relative "lib/shopping_cart"
+require_relative "lib/product_collection"
 
 collection = ProductCollection.from_dir(__dir__)
 collection.sort!(key: :price, order: "asc")
@@ -49,7 +49,7 @@ if shopping_list.sum == 0
 else
   puts "Вы купили:"
   puts
-  puts shopping_list.to_s
+  puts shopping_list
   puts
   puts "С Вас — #{shopping_list.sum} руб. Спасибо за покупки!"
 end

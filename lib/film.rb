@@ -1,13 +1,12 @@
 class Film < Product
-  attr_writer :price, :amount, :name, :year, :author
   attr_accessor :price, :amount, :name, :author, :year
 
-  def initialize(params, info)
+  def initialize(params)
     super
 
-    @name = info[:name]
-    @year = info[:year]
-    @author = info[:author]
+    @name = params[:name]
+    @year = params[:year]
+    @author = params[:author]
   end
 
   def info
@@ -17,7 +16,7 @@ class Film < Product
   def self.from_file(file_path)
     content = File.readlines(file_path, chomp: true)
 
-    self.new({price: content[3], amount: content[4]},
-      {name: content[0], year: content[1], author: content[2]})
+    self.new({price: content[3], amount: content[4],
+      name: content[0], year: content[1], author: content[2]})
   end
 end

@@ -1,5 +1,5 @@
 class Product
-  def initialize(params, info)
+  def initialize(params)
     @price = params[:price].to_i
     @amount = params[:amount].to_i
   end
